@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christian Lammersdorf — Graphic Designer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --bg: #080808;
+    --surface: #101010;
+    --surface2: #161616;
+    --border: #1e1e1e;
+    --text: #e8e4de;
+    --muted: #666;
+    --subtle: #333;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    color: #fff;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 span {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+  }
+
+  .hero-desc {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: #000;
+    padding: 14px 28px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-secondary {
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--subtle);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--text); border-color: var(--muted); }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item .num {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-item .label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* SECTION WRAPPER */
+  .section {
+    padding: 100px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+
+  .section-num {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  .section h2 {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .section > p {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.8;
+  }
+
+  /* EXPERTISE */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 48px;
+  }
+
+  .expertise-card {
+    background: var(--surface);
+    padding: 32px;
+    transition: background 0.2s;
+  }
+
+  .expertise-card:hover { background: var(--surface2); }
+
+  .expertise-card .icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .expertise-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .expertise-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-item:last-child { border-bottom: none; }
+
+  .timeline-left .company {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .timeline-left .period {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .timeline-right h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .timeline-right p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* CASE STUDY */
+  .case-study {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 48px;
+  }
+
+  .cs-header {
+    padding: 48px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, #111 0%, #0d0d0d 100%);
+  }
+
+  .cs-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .cs-header h3 {
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  .cs-header p {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .cs-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+
+  .cs-meta-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .cs-meta-item span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .cs-body {
+    padding: 48px;
+  }
+
+  .cs-section-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+
+  .cs-section-title:first-child { margin-top: 0; }
+
+  .cs-body h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .cs-body p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .del-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 4px;
+  }
+
+  .del-card .icon { font-size: 20px; margin-bottom: 8px; }
+
+  .del-card h5 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+
+  .del-card p {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .results-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .result-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .result-card .big {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .result-card p {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .skills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .skill-pill {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 100px 60px;
+    text-align: center;
+  }
+
+  .contact-section h2 {
+    font-size: 48px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+
+  .contact-section p {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+  }
+
+  .contact-link .cl-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .contact-link .cl-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover .cl-value { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    padding: 24px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span {
+    font-size: 12px;
+    color: var(--subtle);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .hero h1 { letter-spacing: -2px; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .section { padding: 60px 24px; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+    .deliverables-grid { grid-template-columns: repeat(2, 1fr); }
+    .results-row { grid-template-columns: repeat(2, 1fr); }
+    .cs-header, .cs-body { padding: 28px; }
+    .cs-meta { flex-wrap: wrap; gap: 16px; }
+    .contact-section { padding: 60px 24px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">CL</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Available for Freelance & Full-Time · Fort Lauderdale, FL</div>
+  <h1>Christian<br><span>Lammersdorf</span><br>Designer.</h1>
+  <p class="hero-desc">7+ years crafting large-format print, environmental signage, vehicle wraps, and digital marketing — from casino floors to yacht showrooms.</p>
+  <div class="hero-actions">
+    <a href="#work" class="btn-primary">View Work</a>
+    <a href="#contact" class="btn-secondary">Get in Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="num">7+</div>
+      <div class="label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">3</div>
+      <div class="label">Industries</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">FL</div>
+      <div class="label">Fort Lauderdale</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div id="about" style="border-top: 1px solid var(--border);">
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01 — About</span>
+      <div class="section-line"></div>
+    </div>
+    <h2>Print production expertise<br>meets design thinking.</h2>
+    <p style="margin-top:16px;">I've spent 7+ years producing work that doesn't just look good on screen — it holds up at 10 feet on a casino floor, on a 20-foot vehicle wrap moving down I-95, and on a hospital wall that thousands of patients walk past every day. I understand substrates, color matching, bleeds, and fabrication specs as well as I understand Illustrator.</p>
+
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="icon">🎰</div>
+        <h3>Environmental & Signage</h3>
+        <p>Large-format casino graphics, wayfinding systems, dimensional displays, and retail signage for high-traffic venues.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="icon">🚗</div>
+        <h3>Vehicle Wraps</h3>
+        <p>Full and partial wraps from concept through print-ready production files. Fleet consistency, color matching, contour cutting.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="icon">📐</div>
+        <h3>Print Production</h3>
+        <p>Vinyl spec, 3M & Avery substrates, lamination, Pantone-to-CMYK-to-vinyl color matching. Files that go to press right the first time.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="icon">📣</div>
+        <h3>Digital Marketing</h3>
+        <p>Email campaigns, social media graphics, Google Ads, and video editing — developed across multiple brand divisions at Yacht Group.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="icon">🏥</div>
+        <h3>Healthcare & Institutional</h3>
+        <p>ADA-compliant signage, wayfinding, and environmental graphics for Broward Health, Holy Cross Hospital, and related facilities.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="icon">⚡</div>
+        <h3>Freelance & Overflow</h3>
+        <p>Available for project-based work, overflow production support, and design consultation. Fast turnaround, clean files.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div style="border-top: 1px solid var(--border);">
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02 — Experience</span>
+      <div class="section-line"></div>
+    </div>
+    <h2>Where the work was done.</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="company">Fastsigns</div>
+          <div class="period">2019 — 2022</div>
+        </div>
+        <div class="timeline-right">
+          <h3>Graphic Designer</h3>
+          <p>Lead designer producing vehicle wraps, large-format signage, and environmental graphics. Major clients included Broward Health and Holy Cross Hospital. Streamlined production workflows and maintained file consistency across high-volume output.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="company">Image360</div>
+          <div class="period">2018 — 2019</div>
+        </div>
+        <div class="timeline-right">
+          <h3>Graphic Designer</h3>
+          <p>Casino gaming graphics for Seminole Hard Rock and affiliated properties. Complex color-matching across wood panel substrates, dimensional display fabrication support, and golf tournament graphics production.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="company">Yacht Group</div>
+          <div class="period">2023 — 2024</div>
+        </div>
+        <div class="timeline-right">
+          <h3>Graphic Designer</h3>
+          <p>Multi-channel digital marketing across 3 brand divisions: email campaigns, social media content, Google Ads, and video editing. Managed design output for luxury yacht brokerage targeting high-net-worth clientele.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="company">Freelance</div>
+          <div class="period">2024 — Present</div>
+        </div>
+        <div class="timeline-right">
+          <h3>Independent Designer</h3>
+          <p>Contract design work spanning print production, branding, and signage. Available for overflow work, rush projects, and ongoing design support for print shops and marketing teams.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK -->
+<div id="work" style="border-top: 1px solid var(--border);">
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03 — Work</span>
+      <div class="section-line"></div>
+    </div>
+    <h2>Case Study</h2>
+    <p>Environmental wayfinding system designed for a large-scale casino entertainment complex — from site audit through fabrication-ready files.</p>
+
+    <div class="case-study">
+      <div class="cs-header">
+        <div class="cs-tag">Environmental & Signage Design</div>
+        <h3>Casino Floor Wayfinding System</h3>
+        <p>A comprehensive signage system for a multi-floor casino and entertainment complex — 14 sign typologies, one unified visual language, zero file inconsistency across 3 revision cycles.</p>
+        <div class="cs-meta">
+          <div class="cs-meta-item">
+            <label>Client Type</label>
+            <span>Casino Entertainment Complex</span>
+          </div>
+          <div class="cs-meta-item">
+            <label>Role</label>
+            <span>Lead Graphic Designer</span>
+          </div>
+          <div class="cs-meta-item">
+            <label>Scope</label>
+            <span>Full Wayfinding System</span>
+          </div>
+          <div class="cs-meta-item">
+            <label>Output</label>
+            <span>14 Sign Types · Spec Guide</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-body">
+        <div class="cs-section-title">The Challenge</div>
+        <h4>200,000+ sq ft with no visual navigation system</h4>
+        <p>The client operated a sprawling multi-floor gaming and entertainment complex spanning casino floors, restaurants, event spaces, and parking structures. Guest navigation relied entirely on staff — no cohesive wayfinding system existed across the property. The ask: build one from scratch that feels native to the brand.</p>
+
+        <div class="cs-section-title">Deliverables</div>
+        <h4>14 sign types. One master system.</h4>
+        <div class="deliverables-grid">
+          <div class="del-card">
+            <div class="icon">🏛</div>
+            <h5>Entry Totems</h5>
+            <p>Exterior freestanding, 12ft illuminated panels. Color-matched to brand palette.</p>
+          </div>
+          <div class="del-card">
+            <div class="icon">🗺</div>
+            <h5>Directory Panels</h5>
+            <p>Wall-mounted at decision points. Die-cut acrylic with backlighting specs.</p>
+          </div>
+          <div class="del-card">
+            <div class="icon">➡️</div>
+            <h5>Directional Blades</h5>
+            <p>Double-sided hanging signs at corridor intersections. Vinyl on aluminum composite.</p>
+          </div>
+          <div class="del-card">
+            <div class="icon">🎰</div>
+            <h5>Zone IDs</h5>
+            <p>Large-format gaming section headers. Color system per zone, illuminated channel specs.</p>
+          </div>
+          <div class="del-card">
+            <div class="icon">🅿️</div>
+            <h5>Parking Structure</h5>
+            <p>Exterior wayfinding, ADA routing, level identification, entrance/exit.</p>
+          </div>
+          <div class="del-card">
+            <div class="icon">📋</div>
+            <h5>Production Spec Guide</h5>
+            <p>Full doc: substrates, vinyl types, color codes, hardware, installation notes.</p>
+          </div>
+        </div>
+
+        <div class="cs-section-title">Process</div>
+        <h4>Site audit → system design → fabrication-ready output</h4>
+        <p>Walked all 4 floors to identify 38 critical wayfinding nodes. Built a sub-palette aligned to brand standards while meeting ADA contrast requirements. Designed the full system in Illustrator with linked master components — changes propagate across all 14 sign types instantly. Specified 3M IJ180 for flat surfaces, Avery 1005EZ for curved substrates, with full Pantone-to-CMYK-to-vinyl color matching. Delivered layered print-ready PDFs with bleed, crop marks, cut paths, and per-sign production notes.</p>
+
+        <div class="cs-section-title">Outcome</div>
+        <div class="results-row">
+          <div class="result-card">
+            <div class="big">14</div>
+            <p>Unique sign typologies from one master Illustrator system</p>
+          </div>
+          <div class="result-card">
+            <div class="big">38</div>
+            <p>Wayfinding nodes addressed across 4 floors</p>
+          </div>
+          <div class="result-card">
+            <div class="big">0</div>
+            <p>File inconsistencies across 3 client revision cycles</p>
+          </div>
+          <div class="result-card">
+            <div class="big">1</div>
+            <p>Spec guide enabling any vendor to fabricate independently</p>
+          </div>
+        </div>
+
+        <div class="cs-section-title">Skills</div>
+        <div class="skills-wrap">
+          <span class="skill-pill">Adobe Illustrator</span>
+          <span class="skill-pill">Large-Format Production</span>
+          <span class="skill-pill">Environmental Signage</span>
+          <span class="skill-pill">Wayfinding Systems</span>
+          <span class="skill-pill">Vinyl Specification</span>
+          <span class="skill-pill">Color Matching</span>
+          <span class="skill-pill">3M & Avery Substrates</span>
+          <span class="skill-pill">ADA Compliance</span>
+          <span class="skill-pill">Fabrication-Ready Files</span>
+          <span class="skill-pill">Brand Standards</span>
+          <span class="skill-pill">Client Presentation</span>
+          <span class="skill-pill">Systems Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-section">
+    <h2>Let's work together.</h2>
+    <p>Available for print production, signage, vehicle wraps, overflow design work, and freelance projects.</p>
+    <div class="contact-links">
+      <a href="mailto:koose@live.com" class="contact-link">
+        <span class="cl-label">Email</span>
+        <span class="cl-value">koose@live.com</span>
+      </a>
+      <a href="tel:9543614931" class="contact-link">
+        <span class="cl-label">Phone</span>
+        <span class="cl-value">954-361-4931</span>
+      </a>
+      <a href="https://behance.net/koose" target="_blank" class="contact-link">
+        <span class="cl-label">Behance</span>
+        <span class="cl-value">behance.net/Koose</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Christian Lammersdorf — Graphic Designer</span>
+  <span>Fort Lauderdale, FL · Available Now</span>
+</footer>
+
+</body>
+</html>
